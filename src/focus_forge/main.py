@@ -15,9 +15,7 @@ def main(page: ft.Page):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     # TODO: UI-Elemente hinzufügen (Issue #3)
-    page.add(
-        ft.Text("FocusForge 🔨", size=32, weight=ft.FontWeight.BOLD)
-    )
+    page.add(ft.Text("FocusForge 🔨", size=32, weight=ft.FontWeight.BOLD))
 
 
 if __name__ == "__main__":
