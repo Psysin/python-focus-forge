@@ -29,8 +29,8 @@
 |-------|-------|--------|
 | #1 | Projektstruktur und Entwicklungsumgebung | ✅ Fertig |
 | #2 | Leeres Flet-Fenster mit App-Titel | ✅ Fertig |
-| #3 | Timer-Layout mit statischer Anzeige | 🔜 Nächstes |
-| #4 | Zeitformatierung – Sekunden zu MM:SS | ⏳ Ausstehend |
+| #3 | Timer-Layout mit statischer Anzeige | ✅ Fertig |
+| #4 | Zeitformatierung – Sekunden zu MM:SS | 🔜 Nächstes |
 | #5 | Phasenwechsel-Logik | ⏳ Ausstehend |
 | #6 | Start/Pause-Button mit laufendem Countdown | ⏳ Ausstehend |
 | #7 | Reset-Button | ⏳ Ausstehend |
