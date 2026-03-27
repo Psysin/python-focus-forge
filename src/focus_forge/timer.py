@@ -6,7 +6,7 @@ No GUI dependencies - fully testable.
 
 # Konstanten
 FOCUS_DURATION_SEC = 1500  # 25 Minuten
-BREAK_DURATION_SEC = 300   # 5 Minuten
+BREAK_DURATION_SEC = 300  # 5 Minuten
 LONG_BREAK_DURATION_SEC = 900  # 15 Minuten
 SESSIONS_BEFORE_LONG_BREAK = 4
 
@@ -27,7 +27,8 @@ def format_time(seconds: int) -> str:
         '01:30'
     """
     # TODO: Implementierung (Issue #4)
-    pass
+    if seconds < 0:
+        return "00:00"
 
 
 def get_next_phase(current_phase: str) -> str:
