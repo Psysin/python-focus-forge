@@ -37,8 +37,8 @@
 | #1 | Projektstruktur und Entwicklungsumgebung | ✅ Fertig |
 | #2 | Leeres Flet-Fenster mit App-Titel | ✅ Fertig |
 | #3 | Timer-Layout mit statischer Anzeige | ✅ Fertig |
-| #4 | Zeitformatierung – Sekunden zu MM:SS | 🔄 In Arbeit |
-| #5 | Phasenwechsel-Logik | ⏳ Ausstehend |
+| #4 | Zeitformatierung – Sekunden zu MM:SS | ✅ Fertig |
+| #5 | Phasenwechsel-Logik | 🔄 In Arbeit |
 | #6 | Start/Pause-Button mit laufendem Countdown | ⏳ Ausstehend |
 | #7 | Reset-Button | ⏳ Ausstehend |
 | #8 | Automatischer Phasenwechsel bei 00:00 | ⏳ Ausstehend |
@@ -51,6 +51,10 @@
 - Flet: `ft.Text` (Anzeige), `ft.ElevatedButton`, `ft.Column` (vertikal), `ft.Row` (horizontal)
 - `def main(page)` empfängt die Leinwand von Flet (erstellt sie nicht)
 - `if __name__ == "__main__"` verhindert Auto-Start beim Import
+- `//` Ganzzahldivision, `%` Modulo (Rest)
+- f-Strings: Variablen in Text einbauen, `:02` für führende Nullen
+- pytest: Tests mit `def test_...()` und `assert`
+- `pythonpath = ["src"]` in pyproject.toml nötig für src-Layout
 
 ## 📝 Wichtige Entscheidungen
 
@@ -61,9 +65,9 @@
 ---
 ## 🔄 Aktuell in Arbeit
 
-**Issue #4: `format_time()` in `timer.py`**
-- ✅ Negativer Fall fertig: `if seconds < 0: return "00:00"`
-- ❌ Noch fehlt: `minutes` (//), `secs` (%), `return f-String`
-- Danach: Erste pytest-Tests in `tests/test_timer.py` schreiben
+**Issue #5: Phasenwechsel-Logik in `timer.py`**
+- `get_next_phase(current_phase)` → gibt nächste Phase zurück
+- `get_phase_duration(phase)` → gibt Dauer in Sekunden zurück
+- 4 neue Tests in `test_timer.py` schreiben
 
-*Zuletzt aktualisiert: Während Issue #4*
+*Zuletzt aktualisiert: Nach Issue #4*

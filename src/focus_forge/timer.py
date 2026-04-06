@@ -10,7 +10,7 @@ BREAK_DURATION_SEC = 300  # 5 Minuten
 LONG_BREAK_DURATION_SEC = 900  # 15 Minuten
 SESSIONS_BEFORE_LONG_BREAK = 4
 
-
+# Wir übergeben der Funktion Sekunden in Int und erhalten den Output in STR
 def format_time(seconds: int) -> str:
     """Convert seconds to MM:SS format.
 
@@ -26,9 +26,13 @@ def format_time(seconds: int) -> str:
         >>> format_time(90)
         '01:30'
     """
-    # TODO: Implementierung (Issue #4)
+    # Implementierung (Issue #4)
     if seconds < 0:
         return "00:00"
+    minutes = seconds // 60
+    secs = seconds % 60
+    # Bei return lässt man die Klammern weg für gewöhnlich
+    return f"{minutes:02}:{secs:02}"
 
 
 def get_next_phase(current_phase: str) -> str:
