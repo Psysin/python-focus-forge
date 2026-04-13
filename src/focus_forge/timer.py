@@ -10,6 +10,7 @@ BREAK_DURATION_SEC = 300  # 5 Minuten
 LONG_BREAK_DURATION_SEC = 900  # 15 Minuten
 SESSIONS_BEFORE_LONG_BREAK = 4
 
+
 # Wir übergeben der Funktion Sekunden in Int und erhalten den Output in STR
 def format_time(seconds: int) -> str:
     """Convert seconds to MM:SS format.
@@ -51,7 +52,12 @@ def get_next_phase(current_phase: str) -> str:
         'focus'
     """
     # TODO: Implementierung (Issue #5)
-    pass
+    if current_phase == "focus":
+        return "break"
+    elif current_phase == "break":
+        return "focus"
+    else:
+        raise ValueError(f"Unbekannte Phase: {current_phase}!")
 
 
 def get_phase_duration(phase: str) -> int:
@@ -70,4 +76,9 @@ def get_phase_duration(phase: str) -> int:
         300
     """
     # TODO: Implementierung (Issue #5)
-    pass
+    if phase == "focus":
+        return FOCUS_DURATION_SEC
+    elif phase == "break":
+        return BREAK_DURATION_SEC
+    else:
+        raise ValueError(f"Unbekannte Phase: {phase}")
