@@ -55,8 +55,8 @@
 | #3 | Timer-Layout mit statischer Anzeige | ✅ Fertig |
 | #4 | Zeitformatierung – Sekunden zu MM:SS | ✅ Fertig |
 | #5 | Phasenwechsel-Logik | ✅ Fertig |
-| #6 | Start/Pause-Button mit laufendem Countdown | 🔄 Fast fertig |
-| #7 | Reset-Button | ⏳ Ausstehend |
+| #6 | Start/Pause-Button mit laufendem Countdown | ✅ Fertig |
+| #7 | Reset-Button | 🔜 Nächstes |
 | #8 | Automatischer Phasenwechsel bei 00:00 | ⏳ Ausstehend |
 | #9 | Session-Zähler | ⏳ Ausstehend |
 
@@ -64,14 +64,14 @@
 
 - Git-Workflow: `git add` → `git commit -m "..."` → `git push`
 - Staging Area: Zwischenstufe vor dem Commit
-- Flags: `-v` = verbose (ausführlich), `-m` = message, `-u` = upstream, `-e` = editable
-- Flet: `ft.Text`, `ft.ElevatedButton`, `ft.Column`, `ft.Row`
+- Flags: `-v` = verbose, `-m` = message, `-u` = upstream, `-e` = editable
+- Flet: `ft.Text`, `ft.Button` (ElevatedButton ist deprecated!), `ft.Column`, `ft.Row`
+- `ft.run(main)` statt `ft.app(target=main)` (deprecated seit 0.80)
 - `def main(page)` empfängt die Leinwand von Flet (erstellt sie nicht)
 - `if __name__ == "__main__"` verhindert Auto-Start beim Import
 - `//` Ganzzahldivision, `%` Modulo (Rest)
 - f-Strings mit `:02` für führende Nullen
 - pytest: Tests mit `def test_...()` und `assert`
-- `pythonpath = ["src"]` in pyproject.toml gilt nur für pytest
 - `pip install -e .` macht Paket systemweit in venv bekannt
 - Konstanten (GROSSBUCHSTABEN): Single Source of Truth
 - `return` vs `raise ValueError`: normal beenden vs. Fehler werfen
@@ -81,20 +81,18 @@
 - `page.run_task()`: Async-Funktion in Flet starten
 - Import-Reihenfolge (isort): stdlib → third-party → own modules (mit Leerzeilen)
 - `known-first-party` in pyproject.toml für Ruff/isort
+- Einrückung in Python: ersetzt Klammern/Semikolons, zeigt Zugehörigkeit
+- `IndentationError`: Einrückung stimmt nicht überein
+- deprecated = veraltet – Warnung dass etwas bald entfernt wird
+- Button-Text ändern: `ft.Text` als `content` im Button, dann `.value` ändern
+- Timer-Loop Reihenfolge: erst zählen, dann schlafen → kein Delay
 
 ## 📝 Wichtige Entscheidungen
 
 - Logik (`timer.py`) und UI (`main.py`) strikt getrennt
 - Nur `timer.py` wird mit pytest getestet (keine GUI-Tests)
 - CI (`ci.yml.disabled`) erst aktivieren wenn pytest & ruff sicher beherrscht werden
+- `ft.Button` statt `ft.ElevatedButton` (deprecated in Flet 0.80+)
+- Button-Label als separates `ft.Text` Objekt um Text zur Laufzeit zu ändern
 
-## 🐛 Offenes Problem
-
-**Button-Text wechselt nicht bei Klick (Issue #6)**
-- Timer läuft ✅, Pause funktioniert ✅, Fortsetzen funktioniert ✅
-- Aber: Button zeigt nicht "⏸ Pause" / "▶ Start"
-- Versucht: `btn_start.text`, `btn_start_label.value`, `page.update()` – alles ohne Erfolg
-- Ursache: Flet 0.24+ ElevatedButton API-Änderung
-- Nächste Session: Lösung recherchieren und fixen
-
-*Zuletzt aktualisiert: Während Issue #6*
+*Zuletzt aktualisiert: Nach Issue #6*
