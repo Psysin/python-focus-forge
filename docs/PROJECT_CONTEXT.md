@@ -38,6 +38,7 @@
 - **venv aktivieren:** `.venv\Scripts\Activate.ps1`
 - **Python Interpreter in VS Code:** `.venv\Scripts\python.exe` auswählen (Klick unten rechts in Statusleiste) – muss nach Neustart manchmal neu gesetzt werden!
 - **App starten:** `python src/focus_forge/main.py` im Terminal (nicht Play-Button)
+- **Paket installiert:** `pip install -e .` wurde ausgeführt – focus_forge ist systemweit in venv bekannt
 
 ## 📁 Projekt
 
@@ -54,7 +55,7 @@
 | #3 | Timer-Layout mit statischer Anzeige | ✅ Fertig |
 | #4 | Zeitformatierung – Sekunden zu MM:SS | ✅ Fertig |
 | #5 | Phasenwechsel-Logik | ✅ Fertig |
-| #6 | Start/Pause-Button mit laufendem Countdown | 🔜 Nächstes |
+| #6 | Start/Pause-Button mit laufendem Countdown | 🔄 Fast fertig |
 | #7 | Reset-Button | ⏳ Ausstehend |
 | #8 | Automatischer Phasenwechsel bei 00:00 | ⏳ Ausstehend |
 | #9 | Session-Zähler | ⏳ Ausstehend |
@@ -63,17 +64,23 @@
 
 - Git-Workflow: `git add` → `git commit -m "..."` → `git push`
 - Staging Area: Zwischenstufe vor dem Commit
-- Flags: `-v` = verbose (ausführlich), `-m` = message, `-u` = upstream
-- Flet: `ft.Text` (Anzeige), `ft.ElevatedButton`, `ft.Column` (vertikal), `ft.Row` (horizontal)
+- Flags: `-v` = verbose (ausführlich), `-m` = message, `-u` = upstream, `-e` = editable
+- Flet: `ft.Text`, `ft.ElevatedButton`, `ft.Column`, `ft.Row`
 - `def main(page)` empfängt die Leinwand von Flet (erstellt sie nicht)
 - `if __name__ == "__main__"` verhindert Auto-Start beim Import
 - `//` Ganzzahldivision, `%` Modulo (Rest)
-- f-Strings: Variablen in Text einbauen, `:02` für führende Nullen
+- f-Strings mit `:02` für führende Nullen
 - pytest: Tests mit `def test_...()` und `assert`
-- `pythonpath = ["src"]` in pyproject.toml nötig für src-Layout
-- Konstanten (GROSSBUCHSTABEN): unveränderlich, Single Source of Truth, Tippfehler vermeiden
-- `return` vs `raise`: return gibt Wert zurück (normal), raise wirft Fehler (stoppt Programm)
-- `ValueError`: Fehlertyp für falsche Werte
+- `pythonpath = ["src"]` in pyproject.toml gilt nur für pytest
+- `pip install -e .` macht Paket systemweit in venv bekannt
+- Konstanten (GROSSBUCHSTABEN): Single Source of Truth
+- `return` vs `raise ValueError`: normal beenden vs. Fehler werfen
+- `async`/`await`: Timer läuft ohne GUI einzufrieren
+- `nonlocal`: Variable aus äußerem Scope nutzen und verändern
+- `not is_running`: Boolean umschalten (True↔False)
+- `page.run_task()`: Async-Funktion in Flet starten
+- Import-Reihenfolge (isort): stdlib → third-party → own modules (mit Leerzeilen)
+- `known-first-party` in pyproject.toml für Ruff/isort
 
 ## 📝 Wichtige Entscheidungen
 
@@ -81,12 +88,13 @@
 - Nur `timer.py` wird mit pytest getestet (keine GUI-Tests)
 - CI (`ci.yml.disabled`) erst aktivieren wenn pytest & ruff sicher beherrscht werden
 
----
+## 🐛 Offenes Problem
 
-## 🔄 Aktuell in Arbeit
+**Button-Text wechselt nicht bei Klick (Issue #6)**
+- Timer läuft ✅, Pause funktioniert ✅, Fortsetzen funktioniert ✅
+- Aber: Button zeigt nicht "⏸ Pause" / "▶ Start"
+- Versucht: `btn_start.text`, `btn_start_label.value`, `page.update()` – alles ohne Erfolg
+- Ursache: Flet 0.24+ ElevatedButton API-Änderung
+- Nächste Session: Lösung recherchieren und fixen
 
-**Issue #6: Start/Pause-Button mit laufendem Countdown**
-- Erster Kontakt mit `async`/`await`
-- `page.run_task()` für Timer-Loop
-
-*Zuletzt aktualisiert: Nach Issue #5*
+*Zuletzt aktualisiert: Während Issue #6*

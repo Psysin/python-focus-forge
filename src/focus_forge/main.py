@@ -24,12 +24,12 @@ def main(page: ft.Page):
 
     # Funktion für den Timer
     async def timer_loop():
-        nonlocal time_remaining, is_running
+        nonlocal time_remaining, is_running  # ← bleibt!
         while is_running and time_remaining > 0:
-            await asyncio.sleep(1)
             time_remaining -= 1
             countdown.value = format_time(time_remaining)
             countdown.update()
+            await asyncio.sleep(1)
 
     # Funktion für Toggle
     # Einfache Funktion, das Atribut e in Klammern Bedeutet Event z.B. der Klick
@@ -40,11 +40,11 @@ def main(page: ft.Page):
         is_running = not is_running
         if is_running:
             # Button Text ändern
-            btn_start.text = "⏸ Pause"
+            btn_start_text.value = "⏸ Pause"
             # Async Timer-Loop Starten
             page.run_task(timer_loop)
         else:
-            btn_start.text = "▶ Start"
+            btn_start_text.value = "▶ Start"
             # Änderung auf Bildschirm anzeigen
         page.update()
 
@@ -63,11 +63,9 @@ def main(page: ft.Page):
         weight=ft.FontWeight.BOLD,
     )
     # Fügt die Buttons hinzu mit Beschriftung
-    btn_start_label = ft.Text("▶ Start")
-    btn_start = ft.ElevatedButton(
-        content=btn_start_label, on_click=toggle_timer
-    )  # On_Click sagt tut hier etwas bei einen Click, starte die Funktion toggle_timer
-    btn_reset = ft.ElevatedButton("↺ Reset")
+    btn_start_text = ft.Text("▶ Start")
+    btn_start = ft.Button(content=btn_start_text, on_click=toggle_timer)
+    btn_reset = ft.Button("↺ Reset")
 
     # Fügt ein weiteres Anzeige-Element mit Counter hinzu
     session_label = ft.Text("Sessions heute: 0", size=14)
@@ -91,4 +89,4 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.run(main)
