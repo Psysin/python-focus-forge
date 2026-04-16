@@ -56,8 +56,8 @@
 | #4 | Zeitformatierung – Sekunden zu MM:SS | ✅ Fertig |
 | #5 | Phasenwechsel-Logik | ✅ Fertig |
 | #6 | Start/Pause-Button mit laufendem Countdown | ✅ Fertig |
-| #7 | Reset-Button | 🔜 Nächstes |
-| #8 | Automatischer Phasenwechsel bei 00:00 | ⏳ Ausstehend |
+| #7 | Reset-Button | ✅ Fertig |
+| #8 | Automatischer Phasenwechsel bei 00:00 | 🔜 Nächstes |
 | #9 | Session-Zähler | ⏳ Ausstehend |
 
 ## 🎓 Was bisher gelernt wurde
@@ -86,6 +86,8 @@
 - deprecated = veraltet – Warnung dass etwas bald entfernt wird
 - Button-Text ändern: `ft.Text` als `content` im Button, dann `.value` ändern
 - Timer-Loop Reihenfolge: erst zählen, dann schlafen → kein Delay
+- Anzeige vs. Variable: `countdown.value` = was der Nutzer sieht, `time_remaining` = was der Timer intern berechnet – beide müssen beim Reset zurückgesetzt werden
+- `x = x` ist eine sinnlose Zuweisung (Variable weist sich selbst zu, ändert nichts)
 
 ## 📝 Wichtige Entscheidungen
 
@@ -95,4 +97,20 @@
 - `ft.Button` statt `ft.ElevatedButton` (deprecated in Flet 0.80+)
 - Button-Label als separates `ft.Text` Objekt um Text zur Laufzeit zu ändern
 
-*Zuletzt aktualisiert: Nach Issue #6*
+## 💡 Learnings aus diesem Projekt (für zukünftige Projekte)
+
+Diese Punkte beschreiben, was im Lernprozess gut funktioniert hat und was beim nächsten Projekt von Anfang an besser geplant werden sollte.
+
+### Was gut funktioniert hat
+- Konzepte in eigenen Worten erklären lassen (Lernkontrolle)
+- Bugs selbst finden lassen statt sie direkt zu korrigieren
+- Wissensfragen nach jedem abgeschlossenen Schritt
+
+### Was verbessert werden sollte
+- **Kleinere Schritte:** Aufgaben noch feiner aufteilen – lieber 5 Mini-Schritte als 1 großer
+- **Mehr Erklärungen:** Philipp braucht mehr Kontext und Erklärung pro Schritt, auch wenn etwas "offensichtlich" wirkt
+- **Tutor-Stil von Anfang an**: Beim nächsten Projekt die PROJECT_CONTEXT.md direkt mit diesen Regeln starten, nicht erst nachträglich ergänzen
+- **Hints statt Antworten:** Bei Fehlern zuerst Hinweise geben (z.B. "Schau dir Zeile X an"), erst wenn Philipp nicht weiterkommt die Lösung zeigen
+- **Wiederholungen einplanen:** Konzepte aus früheren Issues kurz wiederholen wenn sie erneut auftauchen (z.B. `nonlocal`, `page.update()`)
+
+*Zuletzt aktualisiert: Nach Issue #7*

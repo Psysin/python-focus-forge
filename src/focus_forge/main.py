@@ -48,6 +48,15 @@ def main(page: ft.Page):
             # Änderung auf Bildschirm anzeigen
         page.update()
 
+    # Funktion für Reset
+    def reset_timer(e):
+        nonlocal is_running, time_remaining
+        is_running = False
+        btn_start_text.value = "▶ Start"
+        countdown.value = format_time(1500)
+        time_remaining = 1500
+        page.update()
+
     # Fügt ein Label ein mit Text und gibt Größe und Farbe an.
     # Wir greifen hier auf Objekte von ft (flet) zu per .
     phase_label = ft.Text(
@@ -65,7 +74,8 @@ def main(page: ft.Page):
     # Fügt die Buttons hinzu mit Beschriftung
     btn_start_text = ft.Text("▶ Start")
     btn_start = ft.Button(content=btn_start_text, on_click=toggle_timer)
-    btn_reset = ft.Button("↺ Reset")
+    btn_reset_text = ft.Text("↺ Reset")
+    btn_reset = ft.Button(content=btn_reset_text, on_click=reset_timer)
 
     # Fügt ein weiteres Anzeige-Element mit Counter hinzu
     session_label = ft.Text("Sessions heute: 0", size=14)
