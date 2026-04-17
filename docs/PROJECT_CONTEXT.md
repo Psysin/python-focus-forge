@@ -57,7 +57,7 @@
 | #5 | Phasenwechsel-Logik | ✅ Fertig |
 | #6 | Start/Pause-Button mit laufendem Countdown | ✅ Fertig |
 | #7 | Reset-Button | ✅ Fertig |
-| #8 | Automatischer Phasenwechsel bei 00:00 | 🔜 Nächstes |
+| #8 | Automatischer Phasenwechsel bei 00:00 | 🚧 In Arbeit |
 | #9 | Session-Zähler | ⏳ Ausstehend |
 
 ## 🎓 Was bisher gelernt wurde
@@ -88,6 +88,9 @@
 - Timer-Loop Reihenfolge: erst zählen, dann schlafen → kein Delay
 - Anzeige vs. Variable: `countdown.value` = was der Nutzer sieht, `time_remaining` = was der Timer intern berechnet – beide müssen beim Reset zurückgesetzt werden
 - `x = x` ist eine sinnlose Zuweisung (Variable weist sich selbst zu, ändert nichts)
+- `unused` Import-Warnung: Funktion importiert aber noch nicht verwendet – verschwindet sobald sie genutzt wird
+- Mehrere Imports aus demselben Modul in einer Zeile mit Komma: `from module import a, b, c`
+- `nonlocal` braucht man nur wenn man eine Variable aus der äußeren Funktion **verändern** will (nicht nur lesen)
 
 ## 📝 Wichtige Entscheidungen
 
@@ -113,4 +116,14 @@ Diese Punkte beschreiben, was im Lernprozess gut funktioniert hat und was beim n
 - **Hints statt Antworten:** Bei Fehlern zuerst Hinweise geben (z.B. "Schau dir Zeile X an"), erst wenn Philipp nicht weiterkommt die Lösung zeigen
 - **Wiederholungen einplanen:** Konzepte aus früheren Issues kurz wiederholen wenn sie erneut auftauchen (z.B. `nonlocal`, `page.update()`)
 
-*Zuletzt aktualisiert: Nach Issue #7*
+## 📝 Wo Issue #8 aufgehört hat
+
+- `current_phase = "focus"` als neue State-Variable angelegt
+- `nonlocal` in `timer_loop` um `current_phase` erweitert
+- Nach der `while`-Schleife: `if time_remaining == 0` Block gebaut
+- Darin: Phasenwechsel, neue Dauer, Label-Text und Farbe werden gesetzt, `page.update()` aufgerufen
+- **Noch fehlt:** Timer nach Phasenwechsel automatisch neu starten (`page.run_task(timer_loop)`)
+- **Noch fehlt:** `btn_start_text` auf `"▶ Start"` zurücksetzen wenn Phase endet (oder Timer direkt weiterlaufen lassen)
+- **Noch fehlt:** Manueller Test mit kurzer Dauer (z.B. 5 Sekunden in den Konstanten)
+
+*Zuletzt aktualisiert: Mitte Issue #8*
