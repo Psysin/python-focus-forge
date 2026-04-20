@@ -7,7 +7,12 @@ import asyncio
 
 import flet as ft
 
-from focus_forge.timer import format_time, get_next_phase, get_phase_duration, FOCUS_DURATION_SEC
+from focus_forge.timer import (
+    format_time,
+    get_next_phase,
+    get_phase_duration,
+    FOCUS_DURATION_SEC,
+)
 
 
 def main(page: ft.Page):
@@ -22,10 +27,11 @@ def main(page: ft.Page):
     time_remaining = FOCUS_DURATION_SEC  # Startwert 25 Minuten in Sekunden
     is_running = False  # Timer läuft noch nicht
     current_phase = "focus"
+    session_count = 0  # Aktuelle Phase
 
     # Funktion für den Timer
     async def timer_loop():
-        nonlocal time_remaining, is_running, current_phase  # ← bleibt!
+        nonlocal time_remaining, is_running, current_phase, session_count  # ← bleibt!
         while is_running and time_remaining > 0:
             time_remaining -= 1
             countdown.value = format_time(time_remaining)
@@ -34,6 +40,11 @@ def main(page: ft.Page):
         # Abfrage die Prüft, ob der Timer auf 0 gelaufen ist um dann den Phasencounter
         # zu erhöhen
         if time_remaining == 0:
+            if time_remaining == 0 and current_phase == "focus":
+                session_count += 1
+                # Bei Zuweisung brauchen wir keine Klammern im f-String
+                session_label.value = f"Sessions heute {session_count}"
+                page.update()
             current_phase = get_next_phase(current_phase)
             time_remaining = get_phase_duration(current_phase)
             if current_phase == "focus":
@@ -93,7 +104,7 @@ def main(page: ft.Page):
     btn_reset = ft.Button(content=btn_reset_text, on_click=reset_timer)
 
     # Fügt ein weiteres Anzeige-Element mit Counter hinzu
-    session_label = ft.Text("Sessions heute: 0", size=14)
+    session_label = ft.Text(f"Sessions heute: {session_count}", size=14)
 
     # Wir gruppieren alle Elemente in einer column und fügen sie der Seite hinzu
     page.add(
