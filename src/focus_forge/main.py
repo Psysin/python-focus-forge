@@ -7,7 +7,7 @@ import asyncio
 
 import flet as ft
 
-from focus_forge.timer import format_time, get_next_phase, get_phase_duration
+from focus_forge.timer import format_time, get_next_phase, get_phase_duration, FOCUS_DURATION_SEC
 
 
 def main(page: ft.Page):
@@ -19,7 +19,7 @@ def main(page: ft.Page):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     # State Variabklen (Zustand)
-    time_remaining = 1500  # Startwert 25 Minuten in Sekunden
+    time_remaining = FOCUS_DURATION_SEC  # Startwert 25 Minuten in Sekunden
     is_running = False  # Timer läuft noch nicht
     current_phase = "focus"
 
@@ -43,6 +43,8 @@ def main(page: ft.Page):
                 phase_label.value = "PAUSE"
                 phase_label.color = "red"
             page.update()
+            is_running = True
+            page.run_task(timer_loop)
 
     # Funktion für Toggle
     # Einfache Funktion, das Atribut e in Klammern Bedeutet Event z.B. der Klick
@@ -66,8 +68,8 @@ def main(page: ft.Page):
         nonlocal is_running, time_remaining
         is_running = False
         btn_start_text.value = "▶ Start"
-        countdown.value = format_time(1500)
-        time_remaining = 1500
+        countdown.value = format_time(FOCUS_DURATION_SEC)
+        time_remaining = FOCUS_DURATION_SEC
         page.update()
 
     # Fügt ein Label ein mit Text und gibt Größe und Farbe an.
