@@ -59,7 +59,7 @@
 | #7 | Reset-Button | ✅ Fertig |
 | #8 | Automatischer Phasenwechsel bei 00:00 | ✅ Fertig |
 | #9 | Session-Zähler | ✅ Fertig |
-| #10 | Akustisches Signal beim Phasenwechsel | 🔜 Nächstes |
+| #10 | Akustisches Signal beim Phasenwechsel | ✅ Fertig |
 
 ## 🎓 Was bisher gelernt wurde
 
@@ -96,6 +96,14 @@
 - `page.update()` sendet Änderungen an die Anzeige – aber nur was vorher als `.value` gesetzt wurde
 - `=+1` ist ein Schreibfehler, gemeint ist `+=1` (erhöhen um 1)
 - Session-Zähler zählt abgeschlossene Fokus-Phasen – erst nach der Phase, nicht beim Start
+- `try/except`: Sicherheitsnetz – versuche etwas, und falls ein Fehler auftritt, mach stattdessen das
+- `None`: kein Wert, "nichts" – nicht dasselbe wie `0`! Eigener spezieller Wert in Python
+- `if sound is not None`: prüfen ob eine Variable überhaupt einen Wert hat bevor man sie nutzt
+- `Path(__file__)`: gibt den Pfad zur aktuellen Datei zurück – `.parent` geht einen Ordner höher
+- `pathlib` für Pfade nutzen statt hardcodierter Strings – funktioniert auf Windows und Mac
+- Dunder (`__file__`, `__name__`): spezielle eingebaute Variablen mit doppeltem Unterstrich, von Python selbst gesetzt
+- `ruff check . --fix`: Fehler automatisch beheben lassen (nur wenn `[*]` markiert)
+- `pygame.mixer.init()`: Audio-Subsystem initialisieren – muss vor der Nutzung aufgerufen werden
 
 ## 📝 Wichtige Entscheidungen
 
@@ -121,4 +129,4 @@ Diese Punkte beschreiben, was im Lernprozess gut funktioniert hat und was beim n
 - **Hints statt Antworten:** Bei Fehlern zuerst Hinweise geben (z.B. "Schau dir Zeile X an"), erst wenn Philipp nicht weiterkommt die Lösung zeigen
 - **Wiederholungen einplanen:** Konzepte aus früheren Issues kurz wiederholen wenn sie erneut auftauchen (z.B. `nonlocal`, `page.update()`)
 
-*Zuletzt aktualisiert: Nach Issue #9 – Nächstes: Issue #10 (Akustisches Signal)*
+*Zuletzt aktualisiert: Nach Issue #10 – Issues #1–#10 fertig, MVP fast vollständig*

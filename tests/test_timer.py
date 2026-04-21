@@ -1,6 +1,5 @@
 """Tests for timer.py logic."""
 
-import pytest
 from focus_forge.timer import format_time, get_next_phase, get_phase_duration
 
 

@@ -4,14 +4,16 @@ This module contains the Flet UI code.
 """
 
 import asyncio
+from pathlib import Path
 
 import flet as ft
+import pygame
 
 from focus_forge.timer import (
+    FOCUS_DURATION_SEC,
     format_time,
     get_next_phase,
     get_phase_duration,
-    FOCUS_DURATION_SEC,
 )
 
 
@@ -22,6 +24,17 @@ def main(page: ft.Page):
     page.window.height = 450
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+
+    # Pfad zur Sounddatei
+    sound_path = Path(__file__).parent.parent.parent / "assets" / "sounds" / "whoosh.mp3"
+
+    # Pygame Initialisieren
+    # Mit Try/except sicherstellen das bei fehlendem Sound kmein Fehler kommt
+    try:
+        pygame.mixer.init()
+        sound = pygame.mixer.Sound(sound_path)
+    except Exception:
+        sound = None
 
     # State Variabklen (Zustand)
     time_remaining = FOCUS_DURATION_SEC  # Startwert 25 Minuten in Sekunden
@@ -53,6 +66,9 @@ def main(page: ft.Page):
             else:
                 phase_label.value = "PAUSE"
                 phase_label.color = "red"
+            # Da das page.update jeden Phasenwechsel auslößt, sollte hier auch der Sound liegen
+            if sound is not None:
+                sound.play()
             page.update()
             is_running = True
             page.run_task(timer_loop)
