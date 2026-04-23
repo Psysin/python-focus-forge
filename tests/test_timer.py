@@ -1,6 +1,13 @@
 """Tests for timer.py logic."""
 
-from focus_forge.timer import format_time, get_next_phase, get_phase_duration
+from focus_forge.timer import (
+    BREAK_DURATION_SEC,
+    LONG_BREAK_DURATION_SEC,
+    format_time,
+    get_break_duration,
+    get_next_phase,
+    get_phase_duration,
+)
 
 
 # TODO: Issue #4 - Tests für format_time()
@@ -45,7 +52,13 @@ def test_duration_break():
     assert get_phase_duration("break") == 300
 
 
-# TODO: Issue #5 - Tests für get_phase_duration()
-# def test_duration_focus():
-#     """Test: Focus-Phase dauert 1500 Sekunden"""
-#     assert get_phase_duration("focus") == 1500
+def test_get_break_duration_normal():
+    assert get_break_duration(session_count=2) == BREAK_DURATION_SEC
+
+
+def test_get_break_duration_normal_0():
+    assert get_break_duration(session_count=0) == BREAK_DURATION_SEC
+
+
+def test_get_break_duration_long():
+    assert get_break_duration(session_count=4) == LONG_BREAK_DURATION_SEC

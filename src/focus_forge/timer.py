@@ -7,7 +7,7 @@ No GUI dependencies - fully testable.
 # Konstanten
 FOCUS_DURATION_SEC = 1500  # 1500 25 MinutenS
 BREAK_DURATION_SEC = 300  # 300 5 Minuten
-LONG_BREAK_DURATION_SEC = 90  # 900 15 Minuten
+LONG_BREAK_DURATION_SEC = 900  # 900 15 Minuten
 SESSIONS_BEFORE_LONG_BREAK = 4
 
 

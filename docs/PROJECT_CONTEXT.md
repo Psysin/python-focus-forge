@@ -132,4 +132,4 @@ Diese Punkte beschreiben, was im Lernprozess gut funktioniert hat und was beim n
 - **Hints statt Antworten:** Bei Fehlern zuerst Hinweise geben (z.B. "Schau dir Zeile X an"), erst wenn Philipp nicht weiterkommt die Lösung zeigen
 - **Wiederholungen einplanen:** Konzepte aus früheren Issues kurz wiederholen wenn sie erneut auftauchen (z.B. `nonlocal`, `page.update()`)
 
-*Zuletzt aktualisiert: Nach Issue #11 – MVP vollständig! Issues #1–#11 fertig*
+*Zuletzt aktualisiert: Nach Issue #11 + Tests – MVP vollständig, 12 Tests grün. Nächstes: pyinstaller für Windows/Mac App-Datei*

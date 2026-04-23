@@ -12,9 +12,9 @@ import pygame
 from focus_forge.timer import (
     FOCUS_DURATION_SEC,
     format_time,
+    get_break_duration,
     get_next_phase,
     get_phase_duration,
-    get_break_duration,
 )
 
 
