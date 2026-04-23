@@ -60,6 +60,7 @@
 | #8 | Automatischer Phasenwechsel bei 00:00 | ✅ Fertig |
 | #9 | Session-Zähler | ✅ Fertig |
 | #10 | Akustisches Signal beim Phasenwechsel | ✅ Fertig |
+| #11 | Lange Pause nach 4 Fokus-Sessions | ✅ Fertig |
 
 ## 🎓 Was bisher gelernt wurde
 
@@ -104,6 +105,8 @@
 - Dunder (`__file__`, `__name__`): spezielle eingebaute Variablen mit doppeltem Unterstrich, von Python selbst gesetzt
 - `ruff check . --fix`: Fehler automatisch beheben lassen (nur wenn `[*]` markiert)
 - `pygame.mixer.init()`: Audio-Subsystem initialisieren – muss vor der Nutzung aufgerufen werden
+- Type Hints: `(param: int)` = erwartet Int rein, `-> int` = gibt Int zurück – freiwillig, Python braucht sie nicht aber Werkzeuge und Lesbarkeit profitieren
+- Lange Pause: `get_break_duration(session_count)` prüft via `% 4 == 0` ob lange Pause fällig – `session_count != 0` verhindert lange Pause beim allerersten Start
 
 ## 📝 Wichtige Entscheidungen
 
@@ -129,4 +132,4 @@ Diese Punkte beschreiben, was im Lernprozess gut funktioniert hat und was beim n
 - **Hints statt Antworten:** Bei Fehlern zuerst Hinweise geben (z.B. "Schau dir Zeile X an"), erst wenn Philipp nicht weiterkommt die Lösung zeigen
 - **Wiederholungen einplanen:** Konzepte aus früheren Issues kurz wiederholen wenn sie erneut auftauchen (z.B. `nonlocal`, `page.update()`)
 
-*Zuletzt aktualisiert: Nach Issue #10 – Issues #1–#10 fertig, MVP fast vollständig*
+*Zuletzt aktualisiert: Nach Issue #11 – MVP vollständig! Issues #1–#11 fertig*

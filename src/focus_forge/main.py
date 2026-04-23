@@ -14,6 +14,7 @@ from focus_forge.timer import (
     format_time,
     get_next_phase,
     get_phase_duration,
+    get_break_duration,
 )
 
 
@@ -53,13 +54,16 @@ def main(page: ft.Page):
         # Abfrage die Prüft, ob der Timer auf 0 gelaufen ist um dann den Phasencounter
         # zu erhöhen
         if time_remaining == 0:
-            if time_remaining == 0 and current_phase == "focus":
+            if current_phase == "focus":
                 session_count += 1
                 # Bei Zuweisung brauchen wir keine Klammern im f-String
                 session_label.value = f"Sessions heute {session_count}"
                 page.update()
             current_phase = get_next_phase(current_phase)
-            time_remaining = get_phase_duration(current_phase)
+            if current_phase == "break":
+                time_remaining = get_break_duration(session_count)
+            else:
+                time_remaining = get_phase_duration(current_phase)
             if current_phase == "focus":
                 phase_label.value = "FOKUS"
                 phase_label.color = "blue"

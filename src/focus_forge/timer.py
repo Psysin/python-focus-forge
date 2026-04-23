@@ -7,7 +7,7 @@ No GUI dependencies - fully testable.
 # Konstanten
 FOCUS_DURATION_SEC = 1500  # 1500 25 MinutenS
 BREAK_DURATION_SEC = 300  # 300 5 Minuten
-LONG_BREAK_DURATION_SEC = 900  # 15 Minuten
+LONG_BREAK_DURATION_SEC = 90  # 900 15 Minuten
 SESSIONS_BEFORE_LONG_BREAK = 4
 
 
@@ -82,3 +82,12 @@ def get_phase_duration(phase: str) -> int:
         return BREAK_DURATION_SEC
     else:
         raise ValueError(f"Unbekannte Phase: {phase}")
+
+
+# Funktion zum prüfen welche Pause aktiv ist, lang oder kurz
+def get_break_duration(session_count: int) -> int:
+    # Wir schauen ob die vierte pause erreicht wurde, wenn ja dann lange Pause
+    if session_count % 4 == 0 and session_count != 0:
+        return LONG_BREAK_DURATION_SEC
+    else:
+        return BREAK_DURATION_SEC
