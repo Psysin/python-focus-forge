@@ -28,6 +28,22 @@
 - Diese Lernregeln und Präferenzen in neues Projekt übertragen
 - PROJECT_CONTEXT.md des neuen Projekts mit diesen Regeln befüllen
 
+### 📌 Wichtige Erkenntnisse aus Projekt #1 für Folgeprojekte
+
+- **Philipp braucht viele Zwischenfragen** – nicht einfach erklären, aktiv abfragen
+- **Hints statt Antworten** – bei Fehlern zuerst Hinweis geben, erst dann Lösung
+- **Kleine Schritte** – lieber 5 Mini-Schritte als 1 großer Block
+- **Wiederholungen einplanen** – Konzepte wie `nonlocal`, `page.update()` etc. kurz wiederholen wenn sie erneut auftauchen
+- **PROJECT_CONTEXT.md vor dem Push aktualisieren** – damit der Kontext auf allen Geräten stimmt
+
+### 🗺️ Projekt-Roadmap
+
+| Projekt | Beschreibung | Framework |
+|---------|-------------|-----------|
+| #1 FocusForge | Pomodoro-Timer (dieses Projekt) | Flet |
+| #2 | Spiel (z.B. Snake oder ähnliches) | Pygame |
+| #3 | GUI-App | PyQt (nicht Tkinter, nicht Flet) |
+
 ## 🖥️ Technisches Setup
 
 - **OS:** Windows (PC + Laptop)
@@ -132,4 +148,4 @@ Diese Punkte beschreiben, was im Lernprozess gut funktioniert hat und was beim n
 - **Hints statt Antworten:** Bei Fehlern zuerst Hinweise geben (z.B. "Schau dir Zeile X an"), erst wenn Philipp nicht weiterkommt die Lösung zeigen
 - **Wiederholungen einplanen:** Konzepte aus früheren Issues kurz wiederholen wenn sie erneut auftauchen (z.B. `nonlocal`, `page.update()`)
 
-*Zuletzt aktualisiert: Nach Issue #11 + Tests – MVP vollständig, 12 Tests grün. Nächstes: pyinstaller für Windows/Mac App-Datei*
+*Zuletzt aktualisiert: MVP vollständig – 12 Tests grün, CI aktiv auf GitHub Actions. Projekt abgeschlossen!*
